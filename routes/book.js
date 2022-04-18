@@ -23,7 +23,11 @@ const {
 //@route -- POST api/product/add-product
 //@desc -- add a product
 //@access -- Public
-router.post("/add-book", authenticated, addBookController);
+router.post(
+  "/add-book",
+  //  authenticated,
+  addBookController
+);
 
 //@route -- POST api/product/edit-product
 //@desc -- edit a product
@@ -71,10 +75,10 @@ router.get(
   getProductController
 );
 
-router.get("/all-books", authenticated, allBooksController);
+router.get("/all-books", allBooksController);
 router.get("/check-overdue", updateOverdueController);
 router.get("/update-overdue", updateOverdueController);
-router.get("/all-books-overdue", authenticated, allBooksOverdueController);
+router.get("/all-books-overdue", allBooksOverdueController);
 router.get("/all-adult-books", authenticated, allAdultBooksController);
 router.get("/all-children-books", authenticated, allChildrenBooksController);
 router.post("/search-book/:search", searchBookController);
