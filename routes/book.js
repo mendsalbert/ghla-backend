@@ -72,6 +72,7 @@ router.get(
 );
 
 router.get("/all-books", authenticated, allBooksController);
+router.get("/check-overdue", updateOverdueController);
 router.get("/update-overdue", updateOverdueController);
 router.get("/all-books-overdue", authenticated, allBooksOverdueController);
 router.get("/all-adult-books", authenticated, allAdultBooksController);

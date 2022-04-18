@@ -242,3 +242,26 @@ exports.allBooksOverdueController = async (req, res) => {
     res.json(error);
   }
 };
+
+exports.updateOverdueController = async (req, res) => {
+  try {
+    let now = Date.now();
+
+    let options = { multi: true, upsert: true };
+
+    let updatedBooks = await Book.updateMany(
+      {
+        renewDate: {
+          $gte: now,
+        },
+      },
+      { isOverdue: true },
+
+      options
+    );
+
+    res.json(updatedBooks);
+  } catch (error) {
+    res.json(error);
+  }
+};
