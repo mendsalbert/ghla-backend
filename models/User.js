@@ -7,7 +7,7 @@ const UserSchema = mongoose.Schema({
   secondname: {
     type: String,
   },
-
+  image: { type: Buffer, type: String },
   firstguardian: {
     type: String,
   },
