@@ -20,6 +20,15 @@ const BookSchema = mongoose.Schema({
   type: {
     type: String,
   },
+  dispatched: {
+    type: Boolean,
+  },
+  receive: {
+    type: Boolean,
+  },
+  renewDate: {
+    type: Date,
+  },
   ownedby: [{ type: Schema.Types.ObjectId, ref: "User" }],
 });
 
