@@ -1,33 +1,56 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const UserSchema = mongoose.Schema({
-  name: {
+  firstname: {
     type: String,
-    required: true,
+  },
+  secondname: {
+    type: String,
+  },
+
+  firstguardian: {
+    type: String,
+  },
+  firstguardiancontact: {
+    type: String,
+  },
+  secondguardian: {
+    type: String,
+  },
+  secondguardiancontact: {
+    type: String,
+  },
+  nameofschool: {
+    type: String,
+  },
+  classname: {
+    type: String,
+  },
+  gpsaddress: {
+    type: String,
+  },
+  housenumber: {
+    type: String,
+  },
+  contact: {
+    type: String,
   },
   email: {
     type: String,
-    required: true,
-    unique: true,
+  },
+  ghanacard: {
+    type: String,
   },
   password: {
     type: String,
-    required: true,
   },
   token: {
-    type: String,
-  },
-  phone: {
-    type: String,
-  },
-  country: {
     type: String,
   },
   isAdmin: {
     type: Boolean,
   },
-  order: [{ type: Schema.Types.ObjectId, ref: "Order" }],
-  favorite: [{ type: Schema.Types.ObjectId, ref: "Favorite" }],
+  books: [{ type: Schema.Types.ObjectId, ref: "Book" }],
 });
 
 module.exports = mongoose.model("User", UserSchema);
