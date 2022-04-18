@@ -1,4 +1,4 @@
 {
-    "mongoURI":"mongodb://localhost:27017/shopnow?readPreference=primary&ssl=false",
-    "jwtSecret":"ilovetocode"
+  "mongoURI": "mongodb://localhost:27017/ghla?readPreference=primary&ssl=false",
+  "jwtSecret": "ilovetocode"
 }
