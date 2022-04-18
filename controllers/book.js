@@ -1,9 +1,8 @@
-const Product = require("../models/Product");
-const path = require("path");
+const Book = require("../models/Book");
 const fs = require("fs");
 const formidable = require("formidable");
 
-exports.addProductController = async (req, res, next) => {
+exports.addBookController = async (req, res, next) => {
   try {
     const form = formidable({ multiples: true });
     form.parse(req, (err, fields, files) => {
@@ -12,31 +11,31 @@ exports.addProductController = async (req, res, next) => {
         next(err);
         return;
       }
-      const { name, category, description, price, status, quantity } = fields;
-      // console.log(files.image.path);
-      const saveProduct = async () => {
+      const { title, number, copynumber, author, assertion, type } = fields;
+
+      const saveBook = async () => {
         if (files.image.size > 2000000) {
           return res.json({ msg: "Please select file sizes less than 4MB" });
         }
         var image = fs.readFileSync(files.image.path);
         var encImage = new Buffer(image).toString("base64");
-        // console.log(encImage);
-        const product = new Product({
-          name,
-          category,
-          description,
+
+        const book = new Book({
+          title,
+          number,
+          copynumber,
+          author,
+          assertion,
+          type,
           image: encImage,
-          price,
-          status,
-          quantity,
         });
 
-        let savedProduct = await product.save();
-        res.json(savedProduct);
+        let savedBook = await book.save();
+        res.json(savedBook);
       };
 
       if (typeof files.image === "object") {
-        saveProduct();
+        saveBook();
       }
     });
   } catch (error) {
@@ -54,9 +53,9 @@ exports.editProductController = async (req, res) => {
         return;
       }
       const id = req.params.id;
-      const { name, category, description, price, status, quantity } = fields;
-      // console.log(files.image.path);
-      const saveProduct = async () => {
+      const { title, number, copynumber, author, assertion, type } = fields;
+
+      const saveBook = async () => {
         var encImage = "";
         if (typeof files.image === "object") {
           if (files.image.size > 2000000) {
@@ -64,27 +63,22 @@ exports.editProductController = async (req, res) => {
           }
           var image = fs.readFileSync(files.image.path);
           encImage = new Buffer(image).toString("base64");
-
-          // console.log(encImage);
         } else {
-          let product = await Product.findByIdAndUpdate(id, {
-            name,
-            category,
-            description,
+          let book = await Book.findByIdAndUpdate(id, {
+            title,
+            number,
+            copynumber,
+            author,
+            assertion,
+            type,
             image: encImage,
-            price,
-            status,
-            quantity,
           });
 
-          let savedProduct = await product.save();
-          // res.json(savedProduct);
+          let savedBook = await book.save();
         }
       };
 
-      saveProduct();
-      // if (typeof files.image === "object") {
-      // }
+      saveBook();
     });
 
     res.json("success");

@@ -5,7 +5,6 @@ const config = require("config");
 const { nanoid } = require("nanoid");
 const fs = require("fs");
 const formidable = require("formidable");
-//controller to register a user
 
 exports.registerUserController = async (req, res) => {
   try {
@@ -45,11 +44,9 @@ exports.registerUserController = async (req, res) => {
 
         let user = await User.findOne({ username });
         if (user) {
-          res
-            .status(400)
-            .json({
-              msg: " A user already exist with this particular username",
-            });
+          res.status(400).json({
+            msg: " A user already exist with this particular username",
+          });
         }
 
         user = new User({

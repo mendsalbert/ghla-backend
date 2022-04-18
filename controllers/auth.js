@@ -6,9 +6,9 @@ const config = require("config");
 //controller to authenticate a user / login a user
 exports.userLogInController = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
     // console.log(req.body);
-    let user = await User.findOne({ email });
+    let user = await User.findOne({ username });
     if (!user) {
       const error = new Error("A user with this email doesnt exist");
       error.statusCode = 500;
@@ -22,7 +22,7 @@ exports.userLogInController = async (req, res) => {
         throw error;
       }
     }
-    //payload for jwt (user_id)
+
     const payLoad = {
       user: {
         id: user._id,
