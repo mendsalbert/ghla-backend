@@ -7,7 +7,7 @@ const UserSchema = mongoose.Schema({
   username: {
     type: String,
   },
-  secondname: {
+  lastname: {
     type: String,
   },
   image: { type: Buffer, type: String },

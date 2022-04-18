@@ -28,12 +28,12 @@ router.post("/add-book", authenticated, addBookController);
 //@route -- POST api/product/edit-product
 //@desc -- edit a product
 //@access -- Public
-router.post(
-  "/edit-book/:id",
-  // runValidation,
-  // authenticated,
-  editBookController
-);
+// router.post(
+//   "/edit-book/:id",
+//   // runValidation,
+//   // authenticated,
+//   editBookController
+// );
 
 router.post(
   "/dispatch-book/:id/:userid",
@@ -59,7 +59,7 @@ router.post(
 //@route -- POST api/product/delete-product
 //@desc -- delete a product
 //@access -- Public
-router.post("/delete-product/:id", authenticated, deleteProductController);
+// router.post("/delete-product/:id", authenticated, deleteProductController);
 
 //@route -- GET api/product/all-product
 //@desc -- get all products

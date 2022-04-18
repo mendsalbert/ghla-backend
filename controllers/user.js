@@ -18,7 +18,7 @@ exports.registerUserController = async (req, res) => {
 
       const {
         firstname,
-        secondname,
+        lastname,
         firstguardian,
         firstguardiancontact,
         secondguardian,
@@ -51,7 +51,7 @@ exports.registerUserController = async (req, res) => {
 
         user = new User({
           firstname,
-          secondname,
+          lastname,
           firstguardian,
           firstguardiancontact,
           secondguardian,
