@@ -45,12 +45,12 @@ exports.registerUserController = async (req, res) => {
 
         let user = await User.findOne({ username });
         if (user) {
-          res.status(400).json({
+          return res.status(400).json({
             msg: " A user already exist with this particular username",
           });
         }
 
-        console.log(encImage);
+        // console.log(encImage);
 
         user = new User({
           firstname,
@@ -90,10 +90,9 @@ exports.registerUserController = async (req, res) => {
           },
           (err, token) => {
             if (err) throw err;
-            res.json({ token });
+            res.status(200).json({ user: savedUser, token });
           }
         );
-        res.status(200).json({ user: savedUser });
       };
 
       if (typeof files.image === "object") {
