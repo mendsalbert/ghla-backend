@@ -226,3 +226,17 @@ exports.renewBookController = async (req, res) => {
     console.log(error);
   }
 };
+
+exports.allBooksOverdueController = async (req, res) => {
+  try {
+    let now = Date.now();
+    let allBooks = await Book.find({
+      renewDate: {
+        $gte: now,
+      },
+    });
+    res.json(allBooks);
+  } catch (error) {
+    res.json(error);
+  }
+};

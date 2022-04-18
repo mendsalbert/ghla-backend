@@ -13,6 +13,8 @@ const {
   allChildrenBooksController,
   dispatchBookController,
   recievedBookController,
+  renewBookController,
+  allBooksOverdueController,
 } = require("../controllers/book");
 
 //!!FUTURE ROUTES ***** GET-SINGLE-PRODUCT
@@ -45,6 +47,14 @@ router.post(
   // authenticated,
   recievedBookController
 );
+
+router.post(
+  "/renew-book/:id",
+  // runValidation,
+  // authenticated,
+  renewBookController
+);
+
 //@route -- POST api/product/delete-product
 //@desc -- delete a product
 //@access -- Public
@@ -61,9 +71,9 @@ router.get(
 );
 
 router.get("/all-books", authenticated, allBooksController);
+router.get("/all-books-overdue", authenticated, allBooksOverdueController);
 router.get("/all-adult-books", authenticated, allAdultBooksController);
 router.get("/all-children-books", authenticated, allChildrenBooksController);
-
 router.post("/search-book/:search", searchBookController);
 
 module.exports = router;
