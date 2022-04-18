@@ -15,6 +15,7 @@ const {
   recievedBookController,
   renewBookController,
   allBooksOverdueController,
+  updateOverdueController,
 } = require("../controllers/book");
 
 //!!FUTURE ROUTES ***** GET-SINGLE-PRODUCT
@@ -71,6 +72,7 @@ router.get(
 );
 
 router.get("/all-books", authenticated, allBooksController);
+router.get("/update-overdue", updateOverdueController);
 router.get("/all-books-overdue", authenticated, allBooksOverdueController);
 router.get("/all-adult-books", authenticated, allAdultBooksController);
 router.get("/all-children-books", authenticated, allChildrenBooksController);
