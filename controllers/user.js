@@ -155,8 +155,19 @@ exports.getAllChildrenController = async (req, res) => {
 };
 
 exports.getAllMyBooksController = async (req, res) => {
+  let userId = req.user.id;
   try {
-    let allusers = await User.find({}).populate("books");
+    let allusers = await User.find({ _id: userId }).populate("books");
+    res.json(allusers);
+  } catch (error) {
+    res.json(error);
+  }
+};
+
+exports.getAllMyBooksController = async (req, res) => {
+  try {
+    let userId = req.user.id;
+    let allusers = await User.find({ _id: userId }).populate("books");
     res.json(allusers);
   } catch (error) {
     res.json(error);

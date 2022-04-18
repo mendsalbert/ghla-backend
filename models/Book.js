@@ -29,6 +29,9 @@ const BookSchema = mongoose.Schema({
   renewDate: {
     type: Date,
   },
+  isOverdue: {
+    type: Boolean,
+  },
   ownedby: [{ type: Schema.Types.ObjectId, ref: "User" }],
 });
 
