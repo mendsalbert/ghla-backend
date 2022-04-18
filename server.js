@@ -8,38 +8,20 @@ const expressUpload = require("express-fileupload");
 const connectDB = require("./config/db");
 const cors = require("cors");
 
-//@cart related routes
-const cartRoute = require("./routes/cart");
-
-//@category related routes
-const categoryRoute = require("./routes/category");
-
-//@Favorite related routes
-const favoriteRoute = require("./routes/favorite");
-
-//@Orders related routes
-const orderRoute = require("./routes/order");
-
-//@Tag related routes
-const tagRoute = require("./routes/tag");
-
 //@user related routes
 const userRoute = require("./routes/user");
 const authRoute = require("./routes/auth");
-
 //@product related routes
-const productRoute = require("./routes/product");
-const contactRoute = require("./routes/contact");
+const bookRoute = require("./routes/book");
 
 //init middleware
 app.use(
   cors({
-    origin: ["http://localhost:3001"],
+    origin: ["http://localhost:300"],
     credentials: true,
   })
 );
-// app.use(express.json());
-// app.use(expressUpload({ useTempFiles: true }));
+
 app.use(express.static(path.join(__dirname, "asset")));
 app.use(express.json({ limit: "100mb" }));
 //@user router middleware
@@ -47,25 +29,7 @@ app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
 
 //@product router middleware
-app.use("/api/product", productRoute);
-
-//@cart router middleware
-app.use("/api/cart", cartRoute);
-
-//@category router middleware
-app.use("/api/category", categoryRoute);
-
-//@favorite router middleware
-app.use("/api/favorite", favoriteRoute);
-
-//@order router middleware
-app.use("/api/order", orderRoute);
-
-//@tag router middleware
-app.use("/api/tag", tagRoute);
-
-//@contact router middleware
-app.use("/api/contact", contactRoute);
+app.use("/api/book", bookRoute);
 
 // @home page
 app.use("/", (req, res) => {
