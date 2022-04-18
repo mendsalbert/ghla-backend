@@ -12,6 +12,7 @@ const {
   allAdultBooksController,
   allChildrenBooksController,
   dispatchBookController,
+  recievedBookController,
 } = require("../controllers/book");
 
 //!!FUTURE ROUTES ***** GET-SINGLE-PRODUCT
@@ -32,12 +33,18 @@ router.post(
 );
 
 router.post(
-  "/dispatch-book/:id",
+  "/dispatch-book/:id/:userid",
   // runValidation,
   // authenticated,
   dispatchBookController
 );
 
+router.post(
+  "/recieved-book/:id",
+  // runValidation,
+  // authenticated,
+  recievedBookController
+);
 //@route -- POST api/product/delete-product
 //@desc -- delete a product
 //@access -- Public

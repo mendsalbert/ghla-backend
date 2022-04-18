@@ -161,15 +161,64 @@ exports.dispatchBookController = async (req, res) => {
 
     const { renewDate } = req.body;
 
-    let book = await Book.findByIdAndUpdate(id, {
-      renewDate,
-    });
+    let book = await Book.findByIdAndUpdate(
+      { _id: id },
+      {
+        renewDate,
+      }
+    );
 
-    let userBook = await User.findByIdAndUpdate(userid, {
-      books: id,
-    });
+    let userBook = await User.findByIdAndUpdate(
+      { _id: userId },
+      {
+        $push: {
+          books: id,
+        },
+      }
+    );
 
-    let savedBook = await book.save();
+    await userBook.save();
+    await book.save();
+
+    res.json("success");
+  } catch (error) {
+    res.json(error);
+    console.log(error);
+  }
+};
+
+exports.recievedBookController = async (req, res) => {
+  try {
+    const id = req.params.id;
+    let book = await Book.findByIdAndUpdate(
+      { _id: id },
+      {
+        receive: true,
+      }
+    );
+
+    await book.save();
+
+    res.json("success");
+  } catch (error) {
+    res.json(error);
+    console.log(error);
+  }
+};
+
+exports.renewBookController = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { renewDate } = req.body;
+
+    let book = await Book.findByIdAndUpdate(
+      { _id: id },
+      {
+        renewDate,
+      }
+    );
+
+    await book.save();
 
     res.json("success");
   } catch (error) {
