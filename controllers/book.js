@@ -43,7 +43,7 @@ exports.addBookController = async (req, res, next) => {
   }
 };
 
-exports.editProductController = async (req, res) => {
+exports.editBookController = async (req, res) => {
   try {
     const form = formidable({ multiples: true });
     form.parse(req, (err, fields, files) => {
@@ -126,11 +126,11 @@ exports.getProductController = async (req, res) => {
   }
 };
 
-exports.searchProductController = async (req, res) => {
+exports.searchBookController = async (req, res) => {
   try {
     let searchQuery = req.params.search;
-    let allProduct = await Product.find({ $text: { $search: searchQuery } });
-    res.json(allProduct);
+    let allbooks = await Book.find({ $text: { $search: searchQuery } });
+    res.json(allbooks);
   } catch (error) {
     res.json(error);
   }

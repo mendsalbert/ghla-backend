@@ -26,7 +26,7 @@ router.post(
   "/edit-book/:id",
   // runValidation,
   // authenticated,
-  editProductController
+  editBookController
 );
 
 //@route -- POST api/product/delete-product
