@@ -153,3 +153,12 @@ exports.getAllChildrenController = async (req, res) => {
     res.json(error);
   }
 };
+
+exports.getAllMyBooksController = async (req, res) => {
+  try {
+    let allusers = await User.find({}).populate("books");
+    res.json(allusers);
+  } catch (error) {
+    res.json(error);
+  }
+};
