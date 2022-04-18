@@ -7,27 +7,55 @@ const { nanoid } = require("nanoid");
 
 exports.registerUserController = async (req, res) => {
   try {
-    const { name, email, password, phone, country } = req.body;
+    const {
+      firstname,
+      secondname,
+      firstguardian,
+      firstguardiancontact,
+      secondguardian,
+      secondguardiancontact,
+      nameofschool,
+      classname,
+      gpsaddress,
+      housenumber,
+      password,
+      contact,
+      email,
+      ghanacard,
+      usertype,
+      username,
+    } = req.body;
     console.log(req.body);
-    let user = await User.findOne({ email });
+    let user = await User.findOne({ username });
     if (user) {
       res
         .status(400)
-        .json({ msg: " A user already exist with this particular email" });
+        .json({ msg: " A user already exist with this particular username" });
     }
 
     user = new User({
-      name,
-      email,
+      firstname,
+      secondname,
+      firstguardian,
+      firstguardiancontact,
+      secondguardian,
+      secondguardiancontact,
+      nameofschool,
+      classname,
+      gpsaddress,
+      housenumber,
       password,
-      phone,
-      country,
+      contact,
+      email,
+      ghanacard,
+      usertype,
+      username,
     });
 
     let salt = await bcrypt.genSalt(12);
     user.password = await bcrypt.hash(password, salt);
     const savedUser = await user.save();
-    //payload for jwt(user_id)
+
     const payLoad = {
       user: {
         id: user._id,
@@ -78,7 +106,6 @@ exports.forgetPasswordController = async (req, res) => {
 
 exports.getAllUsersController = async (req, res) => {
   try {
-    // let id = req.user.id;
     let allusers = await User.find({});
     res.json(allusers);
   } catch (error) {
@@ -86,10 +113,18 @@ exports.getAllUsersController = async (req, res) => {
   }
 };
 
-exports.getSingleUsersController = async (req, res) => {
+exports.getAllAdultsController = async (req, res) => {
   try {
-    let id = req.user.id;
-    let allusers = await User.find({ _id: id });
+    let allusers = await User.find({ usertype: "adult" });
+    res.json(allusers);
+  } catch (error) {
+    res.json(error);
+  }
+};
+
+exports.getAllChildrenController = async (req, res) => {
+  try {
+    let allusers = await User.find({ usertype: "children" });
     res.json(allusers);
   } catch (error) {
     res.json(error);
