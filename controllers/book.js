@@ -105,10 +105,10 @@ exports.deleteProductController = async (req, res) => {
   }
 };
 
-exports.allProductsController = async (req, res) => {
+exports.allBooksController = async (req, res) => {
   try {
-    let allProduct = await Product.find({});
-    res.json(allProduct);
+    let allBooks = await Book.find({});
+    res.json(allBooks);
   } catch (error) {
     res.json(error);
   }
