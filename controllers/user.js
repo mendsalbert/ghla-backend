@@ -131,7 +131,7 @@ exports.forgetPasswordController = async (req, res) => {
 
 exports.getAllUsersController = async (req, res) => {
   try {
-    let allusers = await User.find({});
+    let allusers = await User.find({}).populate("books");
     res.json(allusers);
   } catch (error) {
     res.json(error);
