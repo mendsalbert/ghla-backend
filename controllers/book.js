@@ -113,6 +113,23 @@ exports.allBooksController = async (req, res) => {
     res.json(error);
   }
 };
+exports.allAdultBooksController = async (req, res) => {
+  try {
+    let allBooks = await Book.find({ type: "Adult" });
+    res.json(allBooks);
+  } catch (error) {
+    res.json(error);
+  }
+};
+
+exports.allChildrenBooksController = async (req, res) => {
+  try {
+    let allBooks = await Book.find({ type: "Children" });
+    res.json(allBooks);
+  } catch (error) {
+    res.json(error);
+  }
+};
 
 exports.getProductController = async (req, res) => {
   try {

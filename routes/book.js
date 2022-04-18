@@ -3,14 +3,15 @@ const router = express.Router();
 const { addProductValidation } = require("../validator/product");
 const { runValidation } = require("../validator/index");
 const { authenticated } = require("../middlewares/authenticate");
+
 const {
   addBookController,
-  //   editProductController,
-  //   deleteProductController,
   allBooksController,
-  searchProductController,
+  searchBookController,
   getProductController,
-} = require("../controllers/product");
+  allAdultBooksController,
+  allChildrenBooksController,
+} = require("../controllers/book");
 
 //!!FUTURE ROUTES ***** GET-SINGLE-PRODUCT
 
@@ -37,7 +38,6 @@ router.post("/delete-product/:id", authenticated, deleteProductController);
 //@route -- GET api/product/all-product
 //@desc -- get all products
 //@access -- Public
-router.get("/all-books", authenticated, allBooksController);
 
 router.get(
   "/get-product/:id",
@@ -45,5 +45,10 @@ router.get(
   getProductController
 );
 
-router.post("/search-product/:search", searchProductController);
+router.get("/all-books", authenticated, allBooksController);
+router.get("/all-adult-books", authenticated, allAdultBooksController);
+router.get("/all-children-books", authenticated, allChildrenBooksController);
+
+router.post("/search-book/:search", searchBookController);
+
 module.exports = router;
