@@ -108,7 +108,7 @@ exports.deleteProductController = async (req, res) => {
 
 exports.allBooksController = async (req, res) => {
   try {
-    let allBooks = await Book.find({});
+    let allBooks = await Book.find({}).populate("user");
     res.json(allBooks);
   } catch (error) {
     res.json(error);

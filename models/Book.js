@@ -32,7 +32,7 @@ const BookSchema = mongoose.Schema({
   isOverdue: {
     type: Boolean,
   },
-  ownedby: [{ type: Schema.Types.ObjectId, ref: "User" }],
+  user: [{ type: Schema.Types.ObjectId, ref: "User" }],
 });
 
 module.exports = mongoose.model("Book", BookSchema);
