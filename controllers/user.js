@@ -15,6 +15,7 @@ exports.registerUserController = async (req, res) => {
         next(err);
         return;
       }
+      console.log(fields);
 
       const {
         firstname,
@@ -48,6 +49,8 @@ exports.registerUserController = async (req, res) => {
             msg: " A user already exist with this particular username",
           });
         }
+
+        console.log(encImage);
 
         user = new User({
           firstname,
