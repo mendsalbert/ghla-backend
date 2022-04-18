@@ -50,6 +50,9 @@ const UserSchema = mongoose.Schema({
   isAdmin: {
     type: Boolean,
   },
+  usertype: {
+    type: String,
+  },
   books: [{ type: Schema.Types.ObjectId, ref: "Book" }],
 });
 
