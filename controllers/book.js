@@ -152,3 +152,27 @@ exports.searchBookController = async (req, res) => {
     res.json(error);
   }
 };
+
+exports.dispatchBookController = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { title, number, copynumber, author, assertion, type } = fields;
+
+    let book = await Book.findByIdAndUpdate(id, {
+      title,
+      number,
+      copynumber,
+      author,
+      assertion,
+      type,
+      image: encImage,
+    });
+
+    let savedBook = await book.save();
+
+    res.json("success");
+  } catch (error) {
+    res.json(error);
+    console.log(error);
+  }
+};

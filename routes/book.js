@@ -11,6 +11,7 @@ const {
   getProductController,
   allAdultBooksController,
   allChildrenBooksController,
+  dispatchBookController,
 } = require("../controllers/book");
 
 //!!FUTURE ROUTES ***** GET-SINGLE-PRODUCT
@@ -28,6 +29,13 @@ router.post(
   // runValidation,
   // authenticated,
   editBookController
+);
+
+router.post(
+  "/dispatch-book/:id",
+  // runValidation,
+  // authenticated,
+  dispatchBookController
 );
 
 //@route -- POST api/product/delete-product
