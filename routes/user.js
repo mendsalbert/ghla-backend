@@ -20,7 +20,7 @@ const {
 //@desc -- Register a user
 //@access -- Public
 
-router.post("/", userSignInValidator, runValidation, registerUserController);
+router.post("/", registerUserController);
 router.get("/all-users", getAllUsersController);
 router.get("/all-adults", getAllAdultsController);
 router.get("/all-children", getAllChildrenController);
