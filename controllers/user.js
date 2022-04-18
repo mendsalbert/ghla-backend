@@ -164,10 +164,14 @@ exports.getAllMyBooksController = async (req, res) => {
   }
 };
 
-exports.getAllMyBooksController = async (req, res) => {
+exports.getAllMyBooksOverdueController = async (req, res) => {
   try {
     let userId = req.user.id;
-    let allusers = await User.find({ _id: userId }).populate("books");
+    let allusers = await User.find({ _id: userId }).populate({
+      path: "books",
+      match: { isOverdue: true },
+    });
+
     res.json(allusers);
   } catch (error) {
     res.json(error);
