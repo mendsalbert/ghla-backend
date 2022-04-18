@@ -4,6 +4,8 @@ const {
   registerUserController,
   forgetPasswordController,
   getAllUsersController,
+  getAllAdultsController,
+  getAllChildrenController,
 } = require("../controllers/user");
 const { runValidation } = require("../validator/index");
 const {
@@ -17,11 +19,9 @@ const {
 
 router.post("/", userSignInValidator, runValidation, registerUserController);
 router.get("/all-users", getAllUsersController);
-router.get("/get-user", getAllUsersController);
-// router.post("/", registerUserController);
-//@route -- POST api/user/forget-password
-//@desc -- Forget password of a user
-//@access -- Public
+router.get("/all-adults", getAllAdultsController);
+router.get("/all-children", getAllChildrenController);
+
 router.post(
   "/forget-password",
   userForgetPassword,
