@@ -1,4 +1,5 @@
 const Book = require("../models/Book");
+const User = require("../models/User");
 const fs = require("fs");
 const formidable = require("formidable");
 
@@ -156,16 +157,16 @@ exports.searchBookController = async (req, res) => {
 exports.dispatchBookController = async (req, res) => {
   try {
     const id = req.params.id;
-    const { title, number, copynumber, author, assertion, type } = fields;
+    const userId = req.params.userid;
+
+    const { renewDate } = req.body;
 
     let book = await Book.findByIdAndUpdate(id, {
-      title,
-      number,
-      copynumber,
-      author,
-      assertion,
-      type,
-      image: encImage,
+      renewDate,
+    });
+
+    let userBook = await User.findByIdAndUpdate(userid, {
+      books: id,
     });
 
     let savedBook = await book.save();
