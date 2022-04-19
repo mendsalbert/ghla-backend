@@ -157,9 +157,11 @@ exports.getAllChildrenController = async (req, res) => {
 };
 
 exports.getAllMyBooksController = async (req, res) => {
-  let userId = req.user.id;
   try {
+    let userId = req.user.id;
+    console.log(userId);
     let allusers = await User.find({ _id: userId }).populate("books");
+    // console.log(allusers);
     res.json(allusers);
   } catch (error) {
     res.json(error);
@@ -171,9 +173,9 @@ exports.getAllMyBooksOverdueController = async (req, res) => {
     let userId = req.user.id;
     let allusers = await User.find({ _id: userId }).populate({
       path: "books",
-      match: { isOverdue: true },
+      match: { isOverdue: "true" },
     });
-
+    // console.log(allusers);
     res.json(allusers);
   } catch (error) {
     res.json(error);

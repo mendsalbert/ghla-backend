@@ -251,7 +251,11 @@ exports.allBooksOverdueController = async (req, res) => {
     //   },
     // });
     console.log(now);
-    let allBooks = await Book.find().where("renewDate").lte(now);
+    let allBooks = await Book.find()
+      .where("renewDate")
+      .lte(now)
+      .populate("user");
+    // console.log(allBooks);
     res.json(allBooks);
   } catch (error) {
     res.json(error);

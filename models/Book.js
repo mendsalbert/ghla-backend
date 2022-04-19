@@ -37,6 +37,7 @@ const BookSchema = mongoose.Schema({
   },
   isOverdue: {
     type: Boolean,
+    default: false,
   },
   user: [{ type: Schema.Types.ObjectId, ref: "User" }],
 });

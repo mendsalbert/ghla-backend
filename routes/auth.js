@@ -18,7 +18,7 @@ router.get("/", authenticated, getLoggedInUser);
 //@route -- POST api/auth
 //@desc -- Authenticate a user
 //@access -- public
-router.post("/", userLogInValidator, runValidation, userLogInController);
+router.post("/", userLogInValidator, userLogInController);
 
 //@route -- POST api/auth/reset-password
 //@desc -- reset password
