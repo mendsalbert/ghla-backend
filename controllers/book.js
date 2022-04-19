@@ -158,13 +158,15 @@ exports.dispatchBookController = async (req, res) => {
   try {
     const id = req.params.id;
     const userId = req.params.userid;
-
+    console.log(userId);
     const { renewDate } = req.body;
 
     let book = await Book.findByIdAndUpdate(
       { _id: id },
       {
         renewDate,
+        user: [userId],
+        dispatched: true,
       }
     );
 
@@ -194,6 +196,8 @@ exports.recievedBookController = async (req, res) => {
       { _id: id },
       {
         receive: true,
+        dispatched: false,
+        // dispatched: false,
       }
     );
 

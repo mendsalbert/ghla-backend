@@ -22,9 +22,11 @@ const BookSchema = mongoose.Schema({
   },
   dispatched: {
     type: Boolean,
+    default: false,
   },
   receive: {
     type: Boolean,
+    default: false,
   },
   renewDate: {
     type: Date,
