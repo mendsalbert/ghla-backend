@@ -168,6 +168,7 @@ exports.dispatchBookController = async (req, res) => {
         user: [userId],
         dispatched: true,
         receive: false,
+        renewed: true,
       }
     );
 
@@ -199,6 +200,7 @@ exports.recievedBookController = async (req, res) => {
         receive: true,
         dispatched: false,
         renewed: false,
+        user: [],
         // dispatched: false,
       }
     );
@@ -242,7 +244,7 @@ exports.allBooksOverdueController = async (req, res) => {
     // .gte(x)
     // let now = Date.now();
     let now = format.asString(format.ISO8601_WITH_TZ_OFFSET_FORMAT, new Date()); // in ISO8601 with timezone
-    console.log(now);
+    // console.log(now);
     // let allBooks = await Book.find({
     //   renewDate: {
     //     $gte: now,
@@ -258,14 +260,14 @@ exports.allBooksOverdueController = async (req, res) => {
 
 exports.updateOverdueController = async (req, res) => {
   try {
-    let now = Date.now();
-
+    // let now = Date.now();
+    let now = format.asString(format.ISO8601_WITH_TZ_OFFSET_FORMAT, new Date()); // in ISO8601 with timezone
     let options = { multi: true, upsert: true };
 
     let updatedBooks = await Book.updateMany(
       {
         renewDate: {
-          $gte: now,
+          $lte: now,
         },
       },
       { isOverdue: true },
@@ -273,7 +275,7 @@ exports.updateOverdueController = async (req, res) => {
       options
     );
 
-    res.json(updatedBooks);
+    res.json({ msg: "updated" });
   } catch (error) {
     res.json(error);
   }
