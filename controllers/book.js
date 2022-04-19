@@ -4,6 +4,7 @@ const fs = require("fs");
 const formidable = require("formidable");
 const format = require("date-format");
 exports.addBookController = async (req, res, next) => {
+  console.log("called=======");
   try {
     const form = formidable({ multiples: true });
     form.parse(req, (err, fields, files) => {
@@ -274,7 +275,7 @@ exports.updateOverdueController = async (req, res) => {
           $lte: now,
         },
       },
-      { isOverdue: true },
+      { isOverdue: true, renewed: false },
 
       options
     );
