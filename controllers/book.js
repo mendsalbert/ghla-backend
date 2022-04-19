@@ -212,14 +212,17 @@ exports.recievedBookController = async (req, res) => {
 };
 
 exports.renewBookController = async (req, res) => {
+  console.log("renew book");
   try {
     const id = req.params.id;
     const { renewDate } = req.body;
-
+    console.log(id, renewDate);
     let book = await Book.findByIdAndUpdate(
       { _id: id },
       {
         renewDate,
+        dispatched: true,
+        receive: false,
       }
     );
 
