@@ -167,6 +167,7 @@ exports.dispatchBookController = async (req, res) => {
         renewDate,
         user: [userId],
         dispatched: true,
+        receive: false,
       }
     );
 
