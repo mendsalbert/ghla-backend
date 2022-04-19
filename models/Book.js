@@ -24,6 +24,10 @@ const BookSchema = mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  renewed: {
+    type: Boolean,
+    default: false,
+  },
   receive: {
     type: Boolean,
     default: false,

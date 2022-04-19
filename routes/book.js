@@ -53,13 +53,6 @@ router.post(
   recievedBookController
 );
 
-router.post(
-  "/renew-book/:id",
-  // runValidation,
-  // authenticated,
-  renewBookController
-);
-
 //@route -- POST api/product/delete-product
 //@desc -- delete a product
 //@access -- Public
@@ -74,6 +67,7 @@ router.get(
   //  authenticated,
   getProductController
 );
+router.post("/renew-book/:id", renewBookController);
 
 router.get("/all-books", allBooksController);
 router.get("/check-overdue", updateOverdueController);

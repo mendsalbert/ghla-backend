@@ -2,7 +2,7 @@ const Book = require("../models/Book");
 const User = require("../models/User");
 const fs = require("fs");
 const formidable = require("formidable");
-
+const format = require("date-format");
 exports.addBookController = async (req, res, next) => {
   try {
     const form = formidable({ multiples: true });
@@ -198,6 +198,7 @@ exports.recievedBookController = async (req, res) => {
       {
         receive: true,
         dispatched: false,
+        renewed: false,
         // dispatched: false,
       }
     );
@@ -223,6 +224,7 @@ exports.renewBookController = async (req, res) => {
         renewDate,
         dispatched: true,
         receive: false,
+        renewed: true,
       }
     );
 
@@ -238,13 +240,16 @@ exports.renewBookController = async (req, res) => {
 exports.allBooksOverdueController = async (req, res) => {
   try {
     // .gte(x)
-    let now = Date.now();
+    // let now = Date.now();
+    let now = format.asString(format.ISO8601_WITH_TZ_OFFSET_FORMAT, new Date()); // in ISO8601 with timezone
+    console.log(now);
     // let allBooks = await Book.find({
     //   renewDate: {
     //     $gte: now,
     //   },
     // });
-    let allBooks = await Book.find().where("renewDate").gte(now);
+    console.log(now);
+    let allBooks = await Book.find().where("renewDate").lte(now);
     res.json(allBooks);
   } catch (error) {
     res.json(error);
