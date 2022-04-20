@@ -7,6 +7,7 @@ const path = require("path");
 const expressUpload = require("express-fileupload");
 const connectDB = require("./config/db");
 const cors = require("cors");
+const axios = require("axios");
 
 //@user related routes
 const userRoute = require("./routes/user");
@@ -36,16 +37,33 @@ app.use("/", (req, res) => {
   res.json({ msg: "home page" });
 });
 
-app.get("http://localhost:1000/api/book/all-books-overdue", (req, res) => {
-  console.log(res);
-  console.log("something");
-});
-
 //init database
 connectDB()
   .then((success) => {
     console.log(success);
     app.listen("1000");
+
+    //*********************
+
+    axios
+      .get("http://localhost:1000/api/book/all-books-overdue")
+      .then((response) => {
+        console.log(
+          response.data.map((user) => {
+            user.user.map((overdueuser) => {
+              if (overdueuser.usertype === "adult") {
+                console.log(overdueuser.contact);
+              } else if (overdueuser.usertype === "children") {
+                // console.log(overdueuser.firstguardiancontact);
+              }
+            });
+          })
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    //******************** */
   })
   .catch((e) => {
     console.log(e);
