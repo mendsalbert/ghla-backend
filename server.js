@@ -36,6 +36,11 @@ app.use("/", (req, res) => {
   res.json({ msg: "home page" });
 });
 
+app.get("http://localhost:1000/api/book/all-books-overdue", (req, res) => {
+  console.log(res);
+  console.log("something");
+});
+
 //init database
 connectDB()
   .then((success) => {
