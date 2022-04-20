@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/graphica99/react-ecommerce-backend#readme",
   "dependencies": {
+    "@vonage/server-sdk": "^2.10.11",
     "axios": "^0.26.1",
     "bcryptjs": "^2.4.3",
     "config": "^3.3.3",
