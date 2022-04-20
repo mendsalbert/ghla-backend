@@ -262,22 +262,37 @@ exports.allBooksOverdueController = async (req, res) => {
   }
 };
 
+// exports.updateOverdueController = async (req, res) => {
+//   try {
+//     let now = format.asString(format.ISO8601_WITH_TZ_OFFSET_FORMAT, new Date()); // in ISO8601 with timezone
+//     let options = { multi: true, upsert: true };
+
+//     let updatedBooks = await Book.updateMany(
+//       {
+//         renewDate: {
+//           $lte: now,
+//         },
+//       },
+//       { isOverdue: true, renewed: false },
+
+//       options
+//     );
+
+//     res.json({ msg: "updated" });
+//   } catch (error) {
+//     res.json(error);
+//   }
+// };
+
 exports.updateOverdueController = async (req, res) => {
   try {
     let now = format.asString(format.ISO8601_WITH_TZ_OFFSET_FORMAT, new Date()); // in ISO8601 with timezone
     let options = { multi: true, upsert: true };
-
-    let updatedBooks = await Book.updateMany(
-      {
-        renewDate: {
-          $lte: now,
-        },
-      },
-      { isOverdue: true, renewed: false },
-
-      options
+    await Book.update(
+      { renewDate: { $lte: now } },
+      { $set: { isOverdue: true, renewed: false } },
+      { multi: true }
     );
-
     res.json({ msg: "updated" });
   } catch (error) {
     res.json(error);
