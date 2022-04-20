@@ -34,6 +34,21 @@ exports.registerUserController = async (req, res) => {
         ghanacard,
         usertype,
         username,
+        date,
+        age,
+        rname,
+        rschool,
+        rbox,
+        rlocation,
+        recommendmessage,
+        rsign,
+        gsign,
+        interest,
+        gfullname,
+        gaddress,
+        gphone,
+        gdate,
+        gofficeaddress,
       } = fields;
 
       const saveUser = async () => {
@@ -70,6 +85,21 @@ exports.registerUserController = async (req, res) => {
           image: encImage,
           usertype,
           username,
+          date,
+          age,
+          rname,
+          rschool,
+          rbox,
+          rlocation,
+          recommendmessage,
+          rsign,
+          gsign,
+          interest,
+          gfullname,
+          gaddress,
+          gphone,
+          gdate,
+          gofficeaddress,
         });
 
         let salt = await bcrypt.genSalt(12);
@@ -171,6 +201,7 @@ exports.getAllMyBooksController = async (req, res) => {
 exports.getAllMyBooksOverdueController = async (req, res) => {
   try {
     let userId = req.user.id;
+    console.log(userId);
     let allusers = await User.find({ _id: userId }).populate({
       path: "books",
       match: { isOverdue: "true" },

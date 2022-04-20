@@ -4,7 +4,6 @@ const fs = require("fs");
 const formidable = require("formidable");
 const format = require("date-format");
 exports.addBookController = async (req, res, next) => {
-  console.log("called=======");
   try {
     const form = formidable({ multiples: true });
     form.parse(req, (err, fields, files) => {
@@ -251,12 +250,12 @@ exports.allBooksOverdueController = async (req, res) => {
     //     $gte: now,
     //   },
     // });
-    console.log(now);
+
     let allBooks = await Book.find()
       .where("renewDate")
       .lte(now)
       .populate("user");
-    // console.log(allBooks);
+
     res.json(allBooks);
   } catch (error) {
     res.json(error);
@@ -265,7 +264,6 @@ exports.allBooksOverdueController = async (req, res) => {
 
 exports.updateOverdueController = async (req, res) => {
   try {
-    // let now = Date.now();
     let now = format.asString(format.ISO8601_WITH_TZ_OFFSET_FORMAT, new Date()); // in ISO8601 with timezone
     let options = { multi: true, upsert: true };
 

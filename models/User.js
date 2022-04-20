@@ -56,6 +56,51 @@ const UserSchema = mongoose.Schema({
   usertype: {
     type: String,
   },
+  date: {
+    type: String,
+  },
+  age: {
+    type: String,
+  },
+  rname: {
+    type: String,
+  },
+  rschool: {
+    type: String,
+  },
+  rbox: {
+    type: String,
+  },
+  rlocation: {
+    type: String,
+  },
+  recommendmessage: {
+    type: String,
+  },
+  rsign: {
+    type: Boolean,
+  },
+
+  gsign: { type: Boolean },
+
+  interest: {
+    type: String,
+  },
+  gfullname: {
+    type: String,
+  },
+  gaddress: {
+    type: String,
+  },
+  gphone: {
+    type: String,
+  },
+  gdate: {
+    type: Date,
+  },
+  gofficeaddress: {
+    type: String,
+  },
   books: [{ type: Schema.Types.ObjectId, ref: "Book" }],
 });
 

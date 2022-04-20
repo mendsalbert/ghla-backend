@@ -39,6 +39,7 @@ const BookSchema = mongoose.Schema({
     type: Boolean,
     default: false,
   },
+ 
   user: [{ type: Schema.Types.ObjectId, ref: "User" }],
 });
 
