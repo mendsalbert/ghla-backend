@@ -44,7 +44,7 @@ app.use("/", (req, res) => {
 
 const sendSMS = (contact) => {
   str = contact.substring(1);
-  const from = "Ghana Library Authority";
+  const from = "Vonage APIs";
   const to = "233" + str;
   console.log(to);
   const text = "Your book has expired return it for renewal";
@@ -97,7 +97,7 @@ connectDB()
     app.listen("1000");
     // 0 0 */3 * * send message every 3 days
     const task = cron.schedule("1 * * * * *", function () {
-      sendSMSHandler();
+      // sendSMSHandler();
     });
 
     task.start();
